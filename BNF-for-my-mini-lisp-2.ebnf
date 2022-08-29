@@ -1,14 +1,22 @@
+(* Тут можно проверить на валидность!!! *)
+(* https://mdkrajnak.github.io/ebnftest/ *)
+
 s_expr      = "(" s_expr_body ")"   | "(" ")"
 
-s_expr_body = may_evals alls | may_evals
+s_expr_body = may_evals all_many | may_evals
 	(* т.к. с number начинаться нельзя! Это же не ф-ця которую можно эвалуировать. *)
 
-alls           = all alls | all
+all_many       = all all_many | all
 all            = may_evals | may_not_evals
 may_evals      = name | s_expr
 may_not_evals  = number | spaces
 
 (* -------- *)
+
+(*
+name   = #'[a-z]+'
+number = #'[0-9]+'
+*)
 
 name   = letter | letter name
 letter = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
@@ -21,5 +29,17 @@ digit  = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0"
 spaces = space | space spaces
 space  = " " | "\n" | "\t"
 
-	
+(* ============== *)
+
 (* "33ss" - тут (пока) это валидный код, с number и name. *)
+(* "   (dfg 34 5445454 (r 34 43) (sdf 23)  )   " - должно быть валидно ващет *)
+(* "( dfsdf 34 54)" - должно быть валидно ващет *)
+
+(* ============== *)
+
+(*
+name = letter | letter name | named_ops ;; ???
+
+ops       = "+"    | "-"
+named_ops = "plus" | "minus" ;; или keywords
+*)
