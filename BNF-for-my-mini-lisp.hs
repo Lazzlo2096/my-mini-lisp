@@ -1,7 +1,7 @@
 -- .bnf в гитхабе не подсвениваеться. -- .ebnf (* вот так там комментарий *) 
 
 -- Примеры от куда можно подсмотреть готовые BNF для некоторых lisp'ов:
--- https://iamwilhelm.github.io/bnf-examples/lisp -- https://github.com/arrdem/sad/blob/master/test/lisp.bnf
+-- 1) https://iamwilhelm.github.io/bnf-examples/lisp , https://github.com/arrdem/sad/blob/master/test/lisp.bnf , https://ru.wikipedia.org/wiki/Лисп#Архитектура_и_синтаксис
 
 -- Инетерсное:
 -- https://www.gnu.org/software/emacs/manual/html_node/elisp/SMIE-Grammar.html
