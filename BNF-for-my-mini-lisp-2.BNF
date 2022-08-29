@@ -1,0 +1,18 @@
+s_expr      = "(" s_expr_body ")"   | "(" ")"
+s_expr_body = may_evals s_expr_body | may_evals | number   ;; но плохо ли это что и так у нас number (и прочее) это список? А space не список? Или его тоже лучше сделать списком?
+may_evals   = space | name | s_expr
+
+;;---------
+
+name = letter | letter name
+;; name = letter | letter name | named_ops ;; ???
+letter = "a" | "b" | .. | "z"
+
+number = digit | digit number
+digit = "0" | "1" | .. | "9"  ;; или иногда это называют number
+
+spaces = space | space spaces
+space = " "
+
+ops       = "+"    | "-"
+named_ops = "plus" | "minus" ;; или keywords
