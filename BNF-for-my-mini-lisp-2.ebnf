@@ -1,0 +1,45 @@
+(* Тут можно проверить на валидность!!! *)
+(* https://mdkrajnak.github.io/ebnftest/ *)
+
+s_expr      = "(" s_expr_body ")"   | "(" ")"
+s_expr_body = may_evals s_expr_body | may_evals | number   (* но плохо ли это что и так у нас number (и прочее) это список? А space не список? Или его тоже лучше сделать списком? *)
+may_evals   = space | name | s_expr
+
+(*---------*)
+
+name = letter | letter name
+(* name = letter | letter name | named_ops ;; ??? *)
+letter = "a" | "b" | .. | "z"
+
+number = digit | digit number
+digit = "0" | "1" | .. | "9"  (* или иногда это называют number *)
+
+spaces = space | space spaces
+space = " "
+
+ops       = "+"    | "-"
+named_ops = "plus" | "minus" (* или keywords *)
+
+
+(*---------------------------------------------------------------------*)
+
+s_expr      = "(" s_expr_body ")"   | "(" ")"
+s_expr_body = may_evals s_expr_body | may_evals | digit
+may_evals   = space | name | s_expr
+
+(*
+name ::= #'[a-z]+'
+number ::= #'[0-9]+'
+*)
+name ::= letter | letter name
+letter ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+                  | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+                  | "u" | "v" | "w" | "x" | "y" | "z"
+
+number ::= digit | digit number
+digit ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0"
+
+spaces ::= space | space spaces
+space ::= " "
+
+
