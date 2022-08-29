@@ -1,5 +1,11 @@
+-- .bnf в гитхабе не подсвениваеться. -- .ebnf (* вот так там комментарий *) 
+
 -- Примеры от куда можно подсмотреть готовые BNF для некоторых lisp'ов:
--- https://iamwilhelm.github.io/bnf-examples/lisp
+-- https://iamwilhelm.github.io/bnf-examples/lisp -- https://github.com/arrdem/sad/blob/master/test/lisp.bnf
+
+-- Инетерсное:
+-- https://www.gnu.org/software/emacs/manual/html_node/elisp/SMIE-Grammar.html
+-- https://github.com/chiant1/bnf/blob/master/bnf.lisp
 
 -------------------------------------------------------------------
 -- Некое сравнение BNF и Regex :
