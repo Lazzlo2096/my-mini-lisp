@@ -1,6 +1,7 @@
 (* Тут можно проверить на валидность!!! *)
 (* https://mdkrajnak.github.io/ebnftest/ *)
 
+file = spaces | s_expr | file file
 s_expr      = "(" s_expr_body ")"   | "(" ")"
 
 s_expr_body = may_evals all_many | may_evals
@@ -8,8 +9,8 @@ s_expr_body = may_evals all_many | may_evals
 
 all_many       = all all_many | all
 all            = may_evals | may_not_evals
-may_evals      = name | s_expr
-may_not_evals  = number | spaces
+may_evals      = name | s_expr | spaces
+may_not_evals  = number        | spaces
 
 (* -------- *)
 
@@ -32,8 +33,6 @@ space  = " " | "\n" | "\t"
 (* ============== *)
 
 (* "33ss" - тут (пока) это валидный код, с number и name. *)
-(* "   (dfg 34 5445454 (r 34 43) (sdf 23)  )   " - должно быть валидно ващет *)
-(* "( dfsdf 34 54)" - должно быть валидно ващет *)
 
 (* ============== *)
 
