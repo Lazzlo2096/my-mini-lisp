@@ -13,9 +13,11 @@ program3 = "(def x 42) (+ x 8)"
 
 --------
 
-data SExpr = A [SExpr]
-           | B String
-           | C Integer
+data LispVal = Atom String
+           | List [LispVal]
+           | String String
+           | Number Integer
+    
 
 
 -- data [a]      = (:)  a [a]        | []
@@ -27,22 +29,32 @@ data SExpr = A [SExpr]
 program2 = "(+ (+ 2 3) 8)"
 
 
-s2 = A [ B "+", A [ B "+", B "2", B "3"], B "8" ]    -- "(+ (+ 2 3) 8)"
-s3 = A [ B "doThing" ]                              -- "(doThing )"
-s4 = A [ B "doThing", A [B "1" , B "2", B "3"] ]    -- "(doThing 1 2 3)"
+s2 = List [ Atom "+", List [ Atom "+", Number 2, Number 3], Number 8 ]    -- "(+ (+ 2 3) 8)"
+
 
 --------
 
 program1 = "(+ 1 2)"
-s1 = A [B "+", C 1, C 2]
+s1 = List [Atom "+", Number 1, Number 2]
+s12 = Number 2
+
+eval :: LispVal -> Integer
+eval (Number x)     = x
+-- eval (Atom x)       = -- ??
+-- eval (List (x:xs))  = eval x + eval xs -- ??
 
 
 -- eval :: Arithms -> Integer
 -- eval (Plus a b) = (+) a b
 
+ops = [
+  ( "+", (+) ),
+  ( "-", (-) )
+  ]
 --------
 
 main = do
   putStrLn "Hello"
   putStrLn "World"
-  -- print $ eval s1 == 3
+  print $ eval s12 == 2
+  --print $ eval s1  == 3
