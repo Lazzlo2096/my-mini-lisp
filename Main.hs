@@ -42,10 +42,16 @@ eval :: LispVal -> Integer
 eval (Number x)     = x
 -- eval (Atom x)       = -- ??
 -- eval (List (x:xs))  = eval x + eval xs -- ??
+eval (List [Atom "+", Number a, Number b]) = (+) a b
+{-
+eval (Atom x) = case x of
+            "+" -> evalWithOp (eval ?? ) (+)
+            "-" -> evalWithOp (eval ?? ) (-)
 
+evalWithOp :: LispVal -> (a -> b) -> Integer
+evalWithOp a op = 
+-}
 
--- eval :: Arithms -> Integer
--- eval (Plus a b) = (+) a b
 
 ops = [
   ( "+", (+) ),
@@ -54,7 +60,7 @@ ops = [
 --------
 
 main = do
-  putStrLn "Hello"
-  putStrLn "World"
+  putStrLn "Hello World"
+
   print $ eval s12 == 2
-  --print $ eval s1  == 3
+  print $ eval s1  == 3
